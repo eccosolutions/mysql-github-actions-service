@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:8.0.35 # Github just gives us 8.2!!
+        image: mysql:5.7
         ports:
           - 3306:3306
         options: --name mysql_container --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=test -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=e2e-tests --entrypoint sh mysql:8 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
