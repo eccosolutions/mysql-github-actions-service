@@ -13,10 +13,7 @@ jobs:
           - 3306:3306
           # NOTE: mysql:5.7 is buried in this line
         options: |
-          --name mysql_container --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s \
-          --health-retries=5 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=test \
-          -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=e2e-tests \
-          --entrypoint sh mysql:5.7 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+          --name mysql_container --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=test -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=e2e-tests --entrypoint sh mysql:5.7 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
     steps:
       - name: List containers
         run: docker ps -a
